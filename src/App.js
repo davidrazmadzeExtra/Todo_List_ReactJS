@@ -52,7 +52,7 @@ function App() {
       <ul>
         {items.map(item => {
           return(
-            <li key={item.key}>{item.value}<button onClick={() => deleteItem(item.id)}>x </button></li>
+            <li key={item.key}>{item.value}<button className='delete-button' onClick={() => deleteItem(item.id)}>x</button></li>
           )
         })}
       </ul>
