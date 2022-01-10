@@ -1,6 +1,19 @@
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  // State Hook - `useState`
+  const [newItem, setNewItem] = useState("");
+
+  // Helper Functions
+
+  /* Adds a new item to the list array*/
+  function addItem() {
+    console.log(newItem);
+  }
+
+  // Main part of app
   return (
     <div className="app">
       {/* 1. Header  */}
@@ -10,12 +23,14 @@ function App() {
       <input 
         type='text'
         placeholder='Add an item...'
+        value={newItem}
+        onChange={e => setNewItem(e.target.value)}
       />
 
       {/* Add (button) */}
-      <button>
+      <button onClick={() => addItem()}>
         Add
-      </button> 
+      </button>
 
       {/* 3. List of todos (unordered list) */}
       <ul>
