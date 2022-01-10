@@ -19,8 +19,6 @@ function App() {
     // Add new item to items array
     setItems(oldList => [...oldList, item]);
 
-    console.log(items);
-
     // Reset newItem back to original state
     setNewItem("");
   }
@@ -46,9 +44,11 @@ function App() {
 
       {/* 3. List of todos (unordered list) */}
       <ul>
-        <li>Take out trash <button>x </button> </li>
-        <li>Mow the lawn</li>
-        <li>Grocery shopping</li>
+        {items.map(item => {
+          return(
+            <li key={item.key}>{item.value}<button>x </button></li>
+          )
+        })}
       </ul>
 
     </div>
