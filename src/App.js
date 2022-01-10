@@ -23,6 +23,12 @@ function App() {
     setNewItem("");
   }
 
+  /* Deletes an item based on the `item.id` key */
+  function deleteItem(id) {
+    const newArray = items.filter(item => item.id !== id);
+    setItems(newArray);
+  }
+
   // Main part of app
   return (
     <div className="app">
@@ -46,7 +52,7 @@ function App() {
       <ul>
         {items.map(item => {
           return(
-            <li key={item.key}>{item.value}<button>x </button></li>
+            <li key={item.key}>{item.value}<button onClick={() => deleteItem(item.id)}>x </button></li>
           )
         })}
       </ul>
