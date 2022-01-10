@@ -2,9 +2,19 @@
   text-align: center;
 }
 
+input {
+  padding: 4px;
+  margin-right: 8px;
+}
+
+
 ul {
   /* Remove bullet point  */
   list-style: none;
+}
+
+li {
+  margin: 12px 0;
 }
 
 .delete-button {
@@ -13,7 +23,6 @@ ul {
 
   border: none;
   color: white;
-  background-color: red;
   border-radius: 4px;
 
   padding-top: 4px;
