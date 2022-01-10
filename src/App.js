@@ -5,12 +5,24 @@ function App() {
 
   // State Hook - `useState`
   const [newItem, setNewItem] = useState("");
+  const [items, setItems] = useState([]);
 
   // Helper Functions
 
   /* Adds a new item to the list array*/
   function addItem() {
-    console.log(newItem);
+    const item = {
+      id: Math.floor(Math.random() * 1000),
+      value: newItem
+    }
+
+    // Add new item to items array
+    setItems(oldList => [...oldList, item]);
+
+    console.log(items);
+
+    // Reset newItem back to original state
+    setNewItem("");
   }
 
   // Main part of app
