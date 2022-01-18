@@ -5,7 +5,8 @@ function App() {
   // State Hook - `useState`
   const [newItem, setNewItem] = useState("");
   const [items, setItems] = useState([]);
-  const [showEdit, setShowEdit] = useState(false);
+
+  const [showEdit, setShowEdit] = useState(-1);
   const [updatedText, setUpdatedText] = useState("");
 
   // Helper Functions
@@ -51,8 +52,8 @@ function App() {
 
     // Replace item in the item list
     setItems((oldList) => [...oldList, newItem]);
-
-    setShowEdit(false);
+    setUpdatedText("");
+    setShowEdit(-1);
   }
 
   // Main part of app
@@ -77,7 +78,7 @@ function App() {
         {items.map((item) => {
           return (
             <div>
-              <li key={item.id} onClick={() => setShowEdit(true)}>
+              <li key={item.id} onClick={() => setShowEdit(item.id)}>
                 {item.value}
                 <button
                   className="delete-button"
@@ -87,11 +88,10 @@ function App() {
                 </button>
               </li>
 
-              {showEdit ? (
+              {showEdit == item.id ? (
                 <div>
                   <input
                     type="text"
-                    placeholder={item.value}
                     value={updatedText}
                     onChange={(e) => setUpdatedText(e.target.value)}
                   />
