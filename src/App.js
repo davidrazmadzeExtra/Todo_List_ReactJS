@@ -36,7 +36,15 @@ function App() {
 
   /* Edit an item text after creating it. */
   function editItem(id) {
-    console.log(id);
+    const currentItem = items.filter((item) => item.id === id);
+    console.log(currentItem);
+
+    const newItem = {
+      id: currentItem.id,
+      value: 'updated'
+    }
+    deleteItem(id);
+    setItems((oldList) => [...oldList, newItem]);
   }
 
   // Main part of app
