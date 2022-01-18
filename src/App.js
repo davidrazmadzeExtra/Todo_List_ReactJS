@@ -5,6 +5,8 @@ function App() {
   // State Hook - `useState`
   const [newItem, setNewItem] = useState("");
   const [items, setItems] = useState([]);
+  const [showEdit, setShowEdit] = useState(false);
+  const [updatedText, setUpdatedText] = useState("");
 
   // Helper Functions
 
@@ -35,16 +37,22 @@ function App() {
   }
 
   /* Edit an item text after creating it. */
-  function editItem(id) {
+  function editItem(id, newText) {
+    // Get the current item
     const currentItem = items.filter((item) => item.id === id);
-    console.log(currentItem);
 
+    // Create a new item with same id
     const newItem = {
       id: currentItem.id,
-      value: 'updated'
-    }
+      value: newText,
+    };
+
     deleteItem(id);
+
+    // Replace item in the item list
     setItems((oldList) => [...oldList, newItem]);
+
+    setShowEdit(false);
   }
 
   // Main part of app
@@ -68,15 +76,31 @@ function App() {
       <ul>
         {items.map((item) => {
           return (
-            <li key={item.id} onClick={() => editItem(item.id)}>
-              {item.value}
-              <button
-                className="delete-button"
-                onClick={() => deleteItem(item.id)}
-              >
-                ❌
-              </button>
-            </li>
+            <div>
+              <li key={item.id} onClick={() => setShowEdit(true)}>
+                {item.value}
+                <button
+                  className="delete-button"
+                  onClick={() => deleteItem(item.id)}
+                >
+                  ❌
+                </button>
+              </li>
+
+              {showEdit ? (
+                <div>
+                  <input
+                    type="text"
+                    placeholder={item.value}
+                    value={updatedText}
+                    onChange={(e) => setUpdatedText(e.target.value)}
+                  />
+                  <button onClick={() => editItem(item.id, updatedText)}>
+                    Update
+                  </button>
+                </div>
+              ) : null}
+            </div>
           );
         })}
       </ul>
